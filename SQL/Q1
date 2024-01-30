@@ -1,0 +1,6 @@
+SELECT T2.trainerName , T2.dateStarted - T2.birthDate AS startingAge
+FROM TrainerSet T1 , Trainer T2
+WHERE T1.trainerID = T2.trainerID AND T1.pokemonID IN (SELECT P1.pokemonID
+                                                        FROM Pokemon P1
+                                                        WHERE P1.pokemonName='Pikachu')
+                                                        order by startingAge ASC , T2.trainerName ASC;

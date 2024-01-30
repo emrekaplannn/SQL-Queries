@@ -1,0 +1,12 @@
+SELECT T3.trainerName
+FROM Trainer T3
+WHERE T3.trainerID IN (SELECT T1.trainerID
+                        FROM TrainerSet T1 , Pokemon P1
+                        WHERE T1.pokemonID = P1.pokemonID AND P1.pokemonType = 'PokeFire'
+                        INTERSECT
+                        SELECT T2.trainerID
+                        FROM TrainerSet T2
+                        WHERE T2.trainerID NOT IN (SELECT T4.trainerID
+                                                    FROM TrainerSet T4 , Pokemon P2
+                                                    WHERE T4.pokemonID = P2.pokemonID AND P2.pokemonType = 'PokeWater'))
+ORDER BY T3.trainerName ASC;

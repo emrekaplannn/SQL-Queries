@@ -1,0 +1,10 @@
+SELECT T1.trainerName
+FROM Trainer T1
+WHERE T1.trainerID IN (SELECT T2.trainerID
+                        FROM TrainerSet T2
+                        WHERE NOT EXISTS (SELECT P1.pokemonID
+                                        FROM Pokemon P1
+                                        WHERE P1.pokemonID=T2.pokemonID AND P1.pokemonType='PokeFire'
+                                            )
+                        )
+ORDER BY T1.trainerName ASC;

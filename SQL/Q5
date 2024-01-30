@@ -1,0 +1,6 @@
+SELECT T2.trainerName
+FROM Trainer T2
+WHERE T2.trainerID IN(SELECT T1.trainerID
+                        FROM TrainerSet T1 , TrainerSet T2 , Evolve E1
+                        WHERE T1.trainerID = T2.trainerID  AND T1.pokemonID=E1.pokemonID1 AND T2.pokemonID=E1.pokemonID2)
+ORDER BY T2.trainerName DESC;

@@ -1,0 +1,74 @@
+1. Specifications
+IMPORTANT NOTE
+SQLite does not support ANY/ALL.
+SQLite returns year (INT) as result of (Date - Date) operation. If you have two dates (ex.
+birthday and date that person died) you can use Date2 - Date1 to find the age of that person.
+Your answers should not include duplicate rows (You may use DISTINCT if needed, however,
+do not eliminate useful data by using DISTINCT).
+
+You are given the following database schema:
+
+Trainer(trainerID, trainerName, birthDate, dateStarted)
+Pokemon(pokemonID, pokemonName, pokemonType)
+TrainerSet(trainerID, pokemonID)
+Evolve(pokemonID1, pokemonID2)
+Duel(duelID, trainerID1, trainerID2, duelDate, winnerID)
+PokemonMaster(trainerID, since, rating)
+
+Assume that this database is based on the anime series Pokemon. The data may not represent
+the actual story of the anime. 
+
+The properties of the relations are given below:
+
+Trainer: The table that stores pokemon trainers. There are 4 attributes:
+•trainerID (INT): id of that trainer.
+•trainerName (TEXT): name of the trainer.
+•birthDate (DATE): birthDate of the trainer.
+•dateStarted (DATE): the date that trainer started pokemon training.
+
+Pokemon: The table that stores pokemons. There are 3 attributes:
+•pokemonID (INT): id of that pokemon.
+•pokemonName (TEXT): name of the pokemon.
+•pokemonType (TEXT): type of the pokemon. (Fire, Water, etc.)
+
+TrainerSet: The table that stores the trainer’s pokemons. There are two attributes on this relation:
+•trainerID (INT): id of the trainer. (References Trainer)
+•pokemonID (INT): id of the pokemon. (References Pokemon)
+
+Evolve: The table that stores pokemon evolving. There are 2 pokemonID’s references Pokemon
+table. pokemonID1 references the pokemon before evolving and pokemonID2 is the evolved
+version of the pokemon1.
+
+Duel: The table that stores the duel between two trainers. There are 5 attributes on this
+relation:
+•duelID (INT): id of the duel.
+•trainerID1 (INT): id of the first trainer participating in the duel. (References Trainer)
+•trainerID2 (INT): id of the second trainer participating in the duel. (References Trainer)
+•duelDate (DATE): date of the duel.
+•winnerID (INT): winner of the duel. (References Trainer)
+
+PokemonMaster: The table that stores the Pokemon Masters. Pokemon Masters are also Pokemon Trainers
+but they are a more elite group. Each Pokemon Master is also a Pokemon Trainer but the
+reverse is not true, only some of the Pokemon Trainers rise to the level of Pokemon Master.
+•trainerID (INT): id of the pokemon master. (References Trainer)
+•since (DATE): date of the pokemon trainer becoming a pokemon master.
+•rating (INT): the rating of the pokemon master.
+
+2. Questions
+Q1 Find all Pokemon trainers who have a pokemon named ”Pikachu” and started
+training before age 15. List the name of the trainer and starting age (Ascending order by
+starting age, name).
+Q2 Find all Pokemon trainers who have won at least one Duel and is not a Pokemon
+Master. List trainerID and name of the trainer (Order by Descending name of the trainer,
+trainerID).
+Q3 Find all Pokemon trainers who have at least one Fire Pokemon (pokemon-
+Type=”PokeFire”) and no Water Pokemon (pokemonType=”PokeWater”) on their train-
+ing set. List the name of the trainers (Ascending order by name of the trainers).
+Q4 Find all Pokemon trainers who have all the Fire Pokemons (pokemonType=”PokeFire”)
+on their training set. List the name of the trainers (Ascending order by name of the train-
+ers).
+Q5 Find all Pokemon trainers who have both evolved and not evolved versions of at
+least one Pokemon on their TrainerSet (Note that you should only check for the direct evolutions. For example, consider evolving chain of P1-P2-P3. You should not check for P1-P3
+evolving). List trainerName and number of pokemons that trainer has. (Descending order
+by number of pokemons, trainerName)
+

@@ -1,0 +1,9 @@
+SELECT T1.trainerID , T1.trainerName
+FROM Trainer T1 , Duel D1
+WHERE T1.trainerID = D1.winnerID
+INTERSECT
+SELECT T2.trainerID , T2.trainerName
+FROM Trainer T2
+WHERE T2.trainerID NOT IN (SELECT P1.trainerID
+                            FROM PokemonMaster P1)
+order by T1.trainerName DESC , T1.trainerID DESC ;
